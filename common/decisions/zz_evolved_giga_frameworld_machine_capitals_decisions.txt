@@ -1,0 +1,158 @@
+
+decision_tec_frameworld_machine_extraction_capital = {
+	icon = decision_tec_basic_ring
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			unity = 300
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_machine_empire = yes
+				is_country_type = ai_empire
+				AND = {
+					exists = event_target:mechanocalibrator_country
+					is_same_value = event_target:mechanocalibrator_country
+				}
+			}
+			is_fallen_empire = no
+			has_origin = origin_frameworld
+		}
+		# Not has extraction capital
+		tec_has_machine_extraction_capital = no
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		custom_tooltip = decision_tooltip_tec_machine_extraction_capital_effects
+		hidden_effect = {
+			# This should force the machine capital to be swapped
+			set_planet_flag = tec_replace_machine_capital_to_extraction
+			# just in case
+			if = {
+				limit = { 
+					has_planet_flag = tec_replace_machine_capital_to_production
+				}
+				remove_planet_flag = tec_replace_machine_capital_to_production
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_tec_frameworld_machine_production_capital = {
+	icon = decision_tec_fabrication_ring
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			unity = 300
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_machine_empire = yes
+				is_country_type = ai_empire
+				AND = {
+					exists = event_target:mechanocalibrator_country
+					is_same_value = event_target:mechanocalibrator_country
+				}
+			}
+			is_fallen_empire = no
+			has_origin = origin_frameworld
+		}
+		# Not has extraction capital
+		tec_has_machine_production_capital = no
+	}
+
+	allow = {
+		always = yes
+	}
+
+	effect = {
+		custom_tooltip = decision_tooltip_tec_machine_production_capital_effects
+		hidden_effect = {
+			# This should force the machine capital to be swapped
+			set_planet_flag = tec_replace_machine_capital_to_production
+			# just in case
+			if = {
+				limit = { 
+					has_planet_flag = tec_replace_machine_capital_to_extraction
+				}
+				remove_planet_flag = tec_replace_machine_capital_to_extraction
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}
+
+decision_tec_frameworld_machine_normal_capital = {
+	enactment_time = 360
+	resources = {
+		category = decisions
+		cost = {
+			unity = 300
+		}
+	}
+
+	potential = {
+		exists = owner
+		owner = {
+			OR = {
+				is_machine_empire = yes
+				is_country_type = ai_empire
+				AND = {
+					exists = event_target:mechanocalibrator_country
+					is_same_value = event_target:mechanocalibrator_country
+				}
+			}
+			is_fallen_empire = no
+			has_origin = origin_frameworld
+		}
+		# Not has extraction capital
+		OR = {
+			tec_has_machine_extraction_capital = yes
+			tec_has_machine_production_capital = yes
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_tooltip_tec_machine_normal_capital_effects
+		hidden_effect = {
+			# This should force the machine capital to be swapped
+			if = {
+				limit = { 
+					has_planet_flag = tec_replace_machine_capital_to_extraction
+				}
+				remove_planet_flag = tec_replace_machine_capital_to_extraction
+			}
+			if = {
+				limit = { 
+					has_planet_flag = tec_replace_machine_capital_to_production
+				}
+				remove_planet_flag = tec_replace_machine_capital_to_production
+			}
+		}
+	}
+
+	ai_weight = {
+		weight = 0
+	}
+}

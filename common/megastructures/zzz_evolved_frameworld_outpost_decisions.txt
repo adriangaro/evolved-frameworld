@@ -1,0 +1,2778 @@
+# Environmentalists
+
+tec_outpost_environment_fix = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	
+
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 2000
+			influence = 50
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		OR = {
+			has_valid_civic = civic_tec_eco_engineers
+			has_valid_civic = civic_tec_machine_terraformers
+		}
+		exists = planet
+		planet = {
+			OR = {
+				has_modifier = "abandoned_terraforming"
+				has_modifier = "dangerous_wildlife"
+				has_modifier = "hazardous_weather"
+				has_modifier = "weak_magnetic_field"
+				has_modifier = "unstable_tectonics"
+				has_modifier = "gpm_unstable_tectonics_2"
+				has_modifier = "tidal_locked"
+				has_modifier = "low_gravity"
+				has_modifier = "high_gravity"
+				has_modifier = "mineral_poor"
+				has_modifier = "atmospheric_aphrodisiac"
+				has_modifier = "atmospheric_hallucinogen"
+				has_modifier = "bleak_planet"
+				has_modifier = "irradiated_planet"
+				has_modifier = "gpm_global_thunderstorms"
+				has_modifier = "gpm_thin_atmospheres"
+				has_modifier = "gpm_strong_volcanism"
+				has_modifier = "gpm_high_gravity_2"
+				has_modifier = "gpm_hostile_flora"
+				has_modifier = "gpm_toxic_gas"
+				has_modifier = "gpm_titanic_predators"
+				has_modifier = "gpm_unusual_seasons"
+				has_modifier = "gpm_simple_organisms"
+				has_modifier = "gpm_unusual_formations"
+				has_modifier = "gpm_great_temperature_variation"
+				has_modifier = "gpm_ice_age"
+				has_modifier = "gpm_locust_plagues"
+				has_modifier = "gpm_resilent_parasites"
+				has_modifier = "gpm_trubbles"
+				has_modifier = "gpm_arachnophobia"
+				has_modifier = "gpm_giant_worm"
+				has_modifier = "gpm_sandstorms"
+				has_modifier = "gpm_quicksand"
+				has_modifier = "gpm_blizzards"
+				has_modifier = "gpm_abominable_predators"
+				has_modifier = "gpm_giant_ocean_snakes"
+				has_modifier = "gpm_cursed_world"
+			}
+		}
+	}
+
+	possible = { 
+		exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } 
+	}
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			hidden_effect = {
+				# Adds variables
+				root.from = {
+					change_variable = {
+						which = tec_terraformed_worlds
+						value = 1
+					}
+				}
+				if = {
+					limit = { has_modifier = "dangerous_wildlife" }
+					remove_modifier = dangerous_wildlife
+					add_modifier = {
+						modifier = pm_tec_peaceful_wildlife
+						days = -1
+					}
+					add_deposit = d_tec_preserved_eco_ecology
+				}
+				if = {
+					limit = { has_modifier = "hazardous_weather" }
+					remove_modifier = hazardous_weather
+					add_modifier = {
+						modifier = pm_tec_peaceful_weather
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "weak_magnetic_field" }
+					remove_modifier = weak_magnetic_field
+					add_modifier = {
+						modifier = strong_magnetic_field
+						days = -1
+					}
+				}
+				if = {
+					limit = { 
+							OR = {
+								has_modifier = "unstable_tectonics"
+								has_modifier = "gpm_unstable_tectonics_2"
+							}
+						}
+					remove_modifier = unstable_tectonics
+					remove_modifier = gpm_unstable_tectonics_2
+					add_modifier = {
+						modifier = pm_tec_stable_tectonics
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "tidal_locked" }
+					remove_modifier = tidal_locked
+					add_deposit = d_tec_preserved_eco_mining
+					}
+				if = {
+					limit = { 
+						OR = {
+							has_modifier = "asteroid_impacts"
+							has_modifier = "gpm_asteroid_impacts_2"
+							}
+						}
+					remove_modifier = gpm_asteroid_impacts_2
+					remove_modifier = asteroid_impacts
+					add_modifier = {
+						modifier = gpm_anti_asteroid
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "wild_storms" }
+					remove_modifier = wild_storms
+					add_deposit = d_tec_preserved_eco_other
+				}
+				if = {
+					limit = { has_modifier = "low_gravity" }
+					remove_modifier = low_gravity
+					add_modifier = {
+						modifier = gpm_artificial_gravity
+						days = -1
+					}
+					add_deposit = d_ore_rich_caverns
+				}
+				if = {
+					limit = { has_modifier = "high_gravity" }
+					remove_modifier = high_gravity
+					add_modifier = {
+						modifier = gpm_artificial_gravity
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "mineral_poor" }
+					remove_modifier = mineral_poor
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "atmospheric_aphrodisiac" }
+					remove_modifier = atmospheric_aphrodisiac
+					add_deposit = d_tec_preserved_eco_other
+				}
+				if = {
+					limit = { has_modifier = "atmospheric_hallucinogen" }
+					remove_modifier = atmospheric_hallucinogen
+					add_deposit = d_tec_preserved_eco_other
+				}
+				if = {
+					limit = { has_modifier = "bleak_planet" }
+					remove_modifier = bleak_planet
+					add_deposit = d_tec_preserved_eco_ecology
+				}
+				if = {
+					limit = { has_modifier = "irradiated_planet" }
+					remove_modifier = irradiated_planet
+					add_deposit = d_tec_preserved_eco_other
+				}
+	
+				if = {
+					limit = { has_modifier = "gpm_global_thunderstorms" }
+					remove_modifier = gpm_global_thunderstorms
+					add_modifier = {
+						modifier = gpm_frequent_thunderstorms
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_thin_atmospheres" }
+					remove_modifier = gpm_thin_atmospheres
+					add_modifier = {
+						modifier = gpm_dense_atmospheres 
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_strong_volcanism" }
+					remove_modifier = gpm_strong_volcanism
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "gpm_high_gravity_2" }
+					remove_modifier = gpm_high_gravity_2
+					add_modifier = {
+						modifier = gpm_low_gravity_2
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_hostile_flora" }
+					remove_modifier = gpm_hostile_flora
+					add_modifier = {
+						modifier = gpm_non_hostile_flora
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_toxic_gas" }
+					remove_modifier = gpm_toxic_gas
+					add_deposit = d_tec_preserved_eco_ecology
+					}
+				if = {
+					limit = { has_modifier = "gpm_titanic_predators" }
+					remove_modifier = gpm_titanic_predators
+					add_modifier = {
+						modifier = gpm_good_titanic_predators
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_unusual_seasons" }
+					remove_modifier = gpm_unusual_seasons
+					add_modifier = {
+						modifier = gpm_perfect_seasons
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_simple_organisms" }
+					remove_modifier = gpm_simple_organisms
+					add_modifier = {
+						modifier = gpm_newly_evolved_complex_organisms
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_unusual_formations" }
+					remove_modifier = gpm_unusual_formations
+					add_modifier = {
+						modifier = gpm_good_unusual_formations
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_great_temperature_variation" }
+					remove_modifier = gpm_great_temperature_variation
+					add_modifier = {
+						modifier = gpm_perfect_seasons
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_ice_age" }
+					remove_modifier = gpm_ice_age
+					add_deposit = d_tec_preserved_eco_mining
+					}
+				if = {
+					limit = { has_modifier = "gpm_locust_plagues" }
+					remove_modifier = gpm_locust_plagues
+					add_modifier = {
+						modifier = gpm_good_locust_plagues
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_resilent_parasites" }
+					remove_modifier = gpm_resilent_parasites
+					add_modifier = {
+						modifier = gpm_symbiotic_life
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_trubbles" }
+					remove_modifier = gpm_trubbles
+					add_modifier = {
+						modifier = gpm_docile_trubbles
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_arachnophobia" }
+					remove_modifier = gpm_arachnophobia
+					add_modifier = {
+						modifier = gpm_docile_arachnophobia
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_giant_worm" }
+					remove_modifier = gpm_giant_worm
+					add_modifier = {
+						modifier = gpm_docile_giant_worm
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_sandstorms" }
+					remove_modifier = gpm_sandstorms
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "gpm_quicksand" }
+					remove_modifier = gpm_quicksand
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "gpm_blizzards" }
+					remove_modifier = gpm_blizzards
+					add_modifier = {
+						modifier = gpm_never_ending_aurora
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_abominable_predators" }
+					remove_modifier = gpm_abominable_predators
+					add_modifier = {
+						modifier = gpm_docile_abominable_predators
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_giant_ocean_snakes" }
+					remove_modifier = gpm_giant_ocean_snakes
+					add_modifier = {
+						modifier = gpm_docile_giant_ocean_snakes
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_cursed_world" }
+					remove_modifier = gpm_cursed_world
+					add_deposit = d_tec_preserved_eco_other
+				}
+
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			NOR = { 			
+				has_modifier = "abandoned_terraforming"
+				has_modifier = "dangerous_wildlife"
+				has_modifier = "hazardous_weather"
+				has_modifier = "weak_magnetic_field"
+				has_modifier = "unstable_tectonics"
+				has_modifier = "gpm_unstable_tectonics_2"
+				has_modifier = "tidal_locked"
+				has_modifier = "low_gravity"
+				has_modifier = "high_gravity"
+				has_modifier = "mineral_poor"
+				has_modifier = "atmospheric_aphrodisiac"
+				has_modifier = "atmospheric_hallucinogen"
+				has_modifier = "bleak_planet"
+				has_modifier = "irradiated_planet"
+				has_modifier = "gpm_global_thunderstorms"
+				has_modifier = "gpm_thin_atmospheres"
+				has_modifier = "gpm_strong_volcanism"
+				has_modifier = "gpm_high_gravity_2"
+				has_modifier = "gpm_hostile_flora"
+				has_modifier = "gpm_toxic_gas"
+				has_modifier = "gpm_titanic_predators"
+				has_modifier = "gpm_unusual_seasons"
+				has_modifier = "gpm_simple_organisms"
+				has_modifier = "gpm_unusual_formations"
+				has_modifier = "gpm_great_temperature_variation"
+				has_modifier = "gpm_ice_age"
+				has_modifier = "gpm_locust_plagues"
+				has_modifier = "gpm_resilent_parasites"
+				has_modifier = "gpm_trubbles"
+				has_modifier = "gpm_arachnophobia"
+				has_modifier = "gpm_giant_worm"
+				has_modifier = "gpm_sandstorms"
+				has_modifier = "gpm_quicksand"
+				has_modifier = "gpm_blizzards"
+				has_modifier = "gpm_abominable_predators"
+				has_modifier = "gpm_giant_ocean_snakes"
+				has_modifier = "gpm_cursed_world"			
+			}		
+		}
+	}
+}
+
+tec_outpost_environment_harmony = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 2000
+			influence = 50
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		OR = {
+			has_valid_civic = civic_tec_eco_keepers
+		}
+		exists = planet
+		planet = {
+			OR = {
+				has_modifier = "dangerous_wildlife"
+				has_modifier = "hazardous_weather"
+				has_modifier = "weak_magnetic_field"
+				has_modifier = "unstable_tectonics"
+				has_modifier = "gpm_unstable_tectonics_2"
+				has_modifier = "tidal_locked"
+				has_modifier = "low_gravity"
+				has_modifier = "high_gravity"
+				has_modifier = "mineral_poor"
+				has_modifier = "atmospheric_aphrodisiac"
+				has_modifier = "atmospheric_hallucinogen"
+				has_modifier = "bleak_planet"
+				has_modifier = "irradiated_planet"
+				has_modifier = "gpm_global_thunderstorms"
+				has_modifier = "gpm_thin_atmospheres"
+				has_modifier = "gpm_strong_volcanism"
+				has_modifier = "gpm_high_gravity_2"
+				has_modifier = "gpm_hostile_flora"
+				has_modifier = "gpm_toxic_gas"
+				has_modifier = "gpm_titanic_predators"
+				has_modifier = "gpm_unusual_seasons"
+				has_modifier = "gpm_simple_organisms"
+				has_modifier = "gpm_unusual_formations"
+				has_modifier = "gpm_great_temperature_variation"
+				has_modifier = "gpm_ice_age"
+				has_modifier = "gpm_locust_plagues"
+				has_modifier = "gpm_resilent_parasites"
+				has_modifier = "gpm_trubbles"
+				has_modifier = "gpm_arachnophobia"
+				has_modifier = "gpm_giant_worm"
+				has_modifier = "gpm_sandstorms"
+				has_modifier = "gpm_quicksand"
+				has_modifier = "gpm_blizzards"
+				has_modifier = "gpm_abominable_predators"
+				has_modifier = "gpm_giant_ocean_snakes"
+				has_modifier = "gpm_cursed_world"
+			}
+		}
+	}
+
+	possible = { 
+		exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } 
+	}
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			hidden_effect = {
+				# Adds variables
+				root.from = {
+					change_variable = {
+						which = tec_terraformed_worlds
+						value = 1
+					}
+				}
+				if = {
+					limit = { has_modifier = "dangerous_wildlife" }
+					remove_modifier = dangerous_wildlife
+					add_modifier = {
+						modifier = pm_tec_peaceful_wildlife
+						days = -1
+					}
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "hazardous_weather" }
+					remove_modifier = hazardous_weather
+					add_modifier = {
+						modifier = pm_tec_peaceful_weather
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "weak_magnetic_field" }
+					remove_modifier = weak_magnetic_field
+					add_modifier = {
+						modifier = strong_magnetic_field
+						days = -1
+					}
+				}
+				if = {
+					limit = { 
+							OR = {
+								has_modifier = "unstable_tectonics"
+								has_modifier = "gpm_unstable_tectonics_2"
+							}
+						}
+					remove_modifier = unstable_tectonics
+					add_modifier = {
+						modifier = pm_tec_stable_tectonics
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "tidal_locked" }
+					remove_modifier = tidal_locked
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { 
+						OR = {
+							has_modifier = "asteroid_impacts"
+							has_modifier = "gpm_asteroid_impacts_2"
+							}
+						}
+					remove_modifier = asteroid_impacts
+					add_modifier = {
+						modifier = gpm_anti_asteroid
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "wild_storms" }
+					remove_modifier = wild_storms
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "low_gravity" }
+					remove_modifier = low_gravity
+					add_modifier = {
+						modifier = gpm_artificial_gravity
+						days = -1
+					}
+					add_deposit = d_ore_rich_caverns
+				}
+				if = {
+					limit = { has_modifier = "high_gravity" }
+					remove_modifier = high_gravity
+					add_modifier = {
+						modifier = gpm_artificial_gravity
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "mineral_poor" }
+					remove_modifier = mineral_poor
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "atmospheric_aphrodisiac" }
+					remove_modifier = atmospheric_aphrodisiac
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "atmospheric_hallucinogen" }
+					remove_modifier = atmospheric_hallucinogen
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "bleak_planet" }
+					remove_modifier = bleak_planet
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "irradiated_planet" }
+					remove_modifier = irradiated_planet
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+	
+				if = {
+					limit = { has_modifier = "gpm_global_thunderstorms" }
+					remove_modifier = gpm_global_thunderstorms
+					add_modifier = {
+						modifier = gpm_frequent_thunderstorms
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_thin_atmospheres" }
+					remove_modifier = gpm_thin_atmospheres
+					add_modifier = {
+						modifier = gpm_dense_atmospheres 
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_strong_volcanism" }
+					remove_modifier = gpm_strong_volcanism
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "gpm_high_gravity_2" }
+					remove_modifier = gpm_high_gravity_2
+					add_modifier = {
+						modifier = gpm_low_gravity_2
+						days = -1
+						}
+				}
+				if = {
+					limit = { has_modifier = "gpm_hostile_flora" }
+					remove_modifier = gpm_hostile_flora
+					add_modifier = {
+						modifier = gpm_non_hostile_flora
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_toxic_gas" }
+					remove_modifier = gpm_toxic_gas
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "gpm_titanic_predators" }
+					remove_modifier = gpm_titanic_predators
+					add_modifier = {
+						modifier = gpm_good_titanic_predators
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_unusual_seasons" }
+					remove_modifier = gpm_unusual_seasons
+					add_modifier = {
+						modifier = gpm_perfect_seasons
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_simple_organisms" }
+					remove_modifier = gpm_simple_organisms
+					add_modifier = {
+						modifier = gpm_newly_evolved_complex_organisms
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_unusual_formations" }
+					remove_modifier = gpm_unusual_formations
+					add_modifier = {
+						modifier = gpm_good_unusual_formations
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_great_temperature_variation" }
+					remove_modifier = gpm_great_temperature_variation
+					add_modifier = {
+						modifier = gpm_perfect_seasons
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_ice_age" }
+					remove_modifier = gpm_ice_age
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+				if = {
+					limit = { has_modifier = "gpm_locust_plagues" }
+					remove_modifier = gpm_locust_plagues
+					add_modifier = {
+						modifier = gpm_good_locust_plagues
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_resilent_parasites" }
+					remove_modifier = gpm_resilent_parasites
+					add_modifier = {
+						modifier = gpm_symbiotic_life
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_trubbles" }
+					remove_modifier = gpm_trubbles
+					add_modifier = {
+						modifier = gpm_docile_trubbles
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_arachnophobia" }
+					remove_modifier = gpm_arachnophobia
+					add_modifier = {
+						modifier = gpm_docile_arachnophobia
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_giant_worm" }
+					remove_modifier = gpm_giant_worm
+					add_modifier = {
+						modifier = gpm_docile_giant_worm
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_sandstorms" }
+					remove_modifier = gpm_sandstorms
+					add_deposit = d_tec_sanctified_eco_grounds
+					}
+				if = {
+					limit = { has_modifier = "gpm_quicksand" }
+					remove_modifier = gpm_quicksand
+					add_deposit = d_tec_sanctified_eco_grounds
+					}
+				if = {
+					limit = { has_modifier = "gpm_blizzards" }
+					remove_modifier = gpm_blizzards
+					add_modifier = {
+						modifier = gpm_never_ending_aurora
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_abominable_predators" }
+					remove_modifier = gpm_abominable_predators
+					add_modifier = {
+						modifier = gpm_docile_abominable_predators
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_giant_ocean_snakes" }
+					remove_modifier = gpm_giant_ocean_snakes
+					add_modifier = {
+						modifier = gpm_docile_giant_ocean_snakes
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_cursed_world" }
+					remove_modifier = gpm_cursed_world
+					add_deposit = d_tec_sanctified_eco_grounds
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			NOR = { 			
+				has_modifier = "abandoned_terraforming"
+				has_modifier = "dangerous_wildlife"
+				has_modifier = "hazardous_weather"
+				has_modifier = "weak_magnetic_field"
+				has_modifier = "unstable_tectonics"
+				has_modifier = "gpm_unstable_tectonics_2"
+				has_modifier = "tidal_locked"
+				has_modifier = "low_gravity"
+				has_modifier = "high_gravity"
+				has_modifier = "mineral_poor"
+				has_modifier = "atmospheric_aphrodisiac"
+				has_modifier = "atmospheric_hallucinogen"
+				has_modifier = "bleak_planet"
+				has_modifier = "irradiated_planet"
+				has_modifier = "gpm_global_thunderstorms"
+				has_modifier = "gpm_thin_atmospheres"
+				has_modifier = "gpm_strong_volcanism"
+				has_modifier = "gpm_high_gravity_2"
+				has_modifier = "gpm_hostile_flora"
+				has_modifier = "gpm_toxic_gas"
+				has_modifier = "gpm_titanic_predators"
+				has_modifier = "gpm_unusual_seasons"
+				has_modifier = "gpm_simple_organisms"
+				has_modifier = "gpm_unusual_formations"
+				has_modifier = "gpm_great_temperature_variation"
+				has_modifier = "gpm_ice_age"
+				has_modifier = "gpm_locust_plagues"
+				has_modifier = "gpm_resilent_parasites"
+				has_modifier = "gpm_trubbles"
+				has_modifier = "gpm_arachnophobia"
+				has_modifier = "gpm_giant_worm"
+				has_modifier = "gpm_sandstorms"
+				has_modifier = "gpm_quicksand"
+				has_modifier = "gpm_blizzards"
+				has_modifier = "gpm_abominable_predators"
+				has_modifier = "gpm_giant_ocean_snakes"
+				has_modifier = "gpm_cursed_world"		
+			}		
+		}
+	}
+}
+
+tec_outpost_environment_preserve = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 2000
+			influence = 50
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		OR = {
+			has_valid_civic = civic_tec_corporate_megareclamators
+			has_valid_civic = civic_environmentalist
+			AND = {
+				has_ethic = ethic_gestalt_preservation
+				NOT = {
+					has_civic = civic_tec_machine_terraformers
+				}
+			}
+		}
+		exists = planet
+		planet = {
+			OR = {
+				has_modifier = "dangerous_wildlife"
+				has_modifier = "hazardous_weather"
+				has_modifier = "weak_magnetic_field"
+				has_modifier = "unstable_tectonics"
+				has_modifier = "gpm_unstable_tectonics_2"
+				has_modifier = "tidal_locked"
+				has_modifier = "low_gravity"
+				has_modifier = "high_gravity"
+				has_modifier = "mineral_poor"
+				has_modifier = "atmospheric_aphrodisiac"
+				has_modifier = "atmospheric_hallucinogen"
+				has_modifier = "bleak_planet"
+				has_modifier = "irradiated_planet"
+				has_modifier = "gpm_global_thunderstorms"
+				has_modifier = "gpm_thin_atmospheres"
+				has_modifier = "gpm_strong_volcanism"
+				has_modifier = "gpm_high_gravity_2"
+				has_modifier = "gpm_hostile_flora"
+				has_modifier = "gpm_toxic_gas"
+				has_modifier = "gpm_titanic_predators"
+				has_modifier = "gpm_unusual_seasons"
+				has_modifier = "gpm_simple_organisms"
+				has_modifier = "gpm_unusual_formations"
+				has_modifier = "gpm_great_temperature_variation"
+				has_modifier = "gpm_ice_age"
+				has_modifier = "gpm_locust_plagues"
+				has_modifier = "gpm_resilent_parasites"
+				has_modifier = "gpm_trubbles"
+				has_modifier = "gpm_arachnophobia"
+				has_modifier = "gpm_giant_worm"
+				has_modifier = "gpm_sandstorms"
+				has_modifier = "gpm_quicksand"
+				has_modifier = "gpm_blizzards"
+				has_modifier = "gpm_abominable_predators"
+				has_modifier = "gpm_giant_ocean_snakes"
+				has_modifier = "gpm_cursed_world"
+				has_modifier = gpm_asteroid_impacts_2
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			hidden_effect = {
+				# Adds variables
+				root.from = {
+					change_variable = {
+						which = tec_terraformed_worlds
+						value = 1
+					}
+				}
+				if = {
+					limit = { has_modifier = "dangerous_wildlife" }
+					remove_modifier = dangerous_wildlife
+					add_modifier = {
+						modifier = pm_tec_peaceful_wildlife
+						days = -1
+					}
+					add_deposit = d_tec_preserved_eco_ecology
+				}
+				if = {
+					limit = { has_modifier = "hazardous_weather" }
+					remove_modifier = hazardous_weather
+					add_modifier = {
+						modifier = pm_tec_peaceful_weather
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "weak_magnetic_field" }
+					remove_modifier = weak_magnetic_field
+					add_modifier = {
+						modifier = strong_magnetic_field
+						days = -1
+					}
+				}
+				if = {
+					limit = { 
+							OR = {
+								has_modifier = "unstable_tectonics"
+								has_modifier = "gpm_unstable_tectonics_2"
+							}
+						}
+					remove_modifier = unstable_tectonics
+					remove_modifier = gpm_unstable_tectonics_2
+					add_modifier = {
+						modifier = pm_tec_stable_tectonics
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "tidal_locked" }
+					remove_modifier = tidal_locked
+					add_deposit = d_tec_preserved_eco_mining
+					}
+				if = {
+					limit = { 
+						OR = {
+							has_modifier = "asteroid_impacts"
+							has_modifier = "gpm_asteroid_impacts_2"
+							}
+						}
+					remove_modifier = gpm_asteroid_impacts_2
+					remove_modifier = asteroid_impacts
+					add_modifier = {
+						modifier = gpm_anti_asteroid
+						days = -1
+				}
+					}
+				if = {
+					limit = { has_modifier = "wild_storms" }
+					remove_modifier = wild_storms
+					add_deposit = d_tec_preserved_eco_other
+				}
+				if = {
+					limit = { has_modifier = "low_gravity" }
+					remove_modifier = low_gravity
+					add_modifier = {
+						modifier = gpm_artificial_gravity
+						days = -1
+					}
+					add_deposit = d_ore_rich_caverns
+				}
+				if = {
+					limit = { has_modifier = "high_gravity" }
+					remove_modifier = high_gravity
+					add_modifier = {
+						modifier = gpm_artificial_gravity
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "mineral_poor" }
+					remove_modifier = mineral_poor
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "atmospheric_aphrodisiac" }
+					remove_modifier = atmospheric_aphrodisiac
+					add_deposit = d_tec_preserved_eco_other
+				}
+				if = {
+					limit = { has_modifier = "atmospheric_hallucinogen" }
+					remove_modifier = atmospheric_hallucinogen
+					add_deposit = d_tec_preserved_eco_other
+				}
+				if = {
+					limit = { has_modifier = "bleak_planet" }
+					remove_modifier = bleak_planet
+					add_deposit = d_tec_preserved_eco_ecology
+				}
+				if = {
+					limit = { has_modifier = "irradiated_planet" }
+					remove_modifier = irradiated_planet
+					add_deposit = d_tec_preserved_eco_other
+				}
+	
+				if = {
+					limit = { has_modifier = "gpm_global_thunderstorms" }
+					remove_modifier = gpm_global_thunderstorms
+					add_modifier = {
+						modifier = gpm_frequent_thunderstorms
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_thin_atmospheres" }
+					remove_modifier = gpm_thin_atmospheres
+					add_modifier = {
+						modifier = gpm_dense_atmospheres 
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_strong_volcanism" }
+					remove_modifier = gpm_strong_volcanism
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "gpm_high_gravity_2" }
+					remove_modifier = gpm_high_gravity_2
+					add_modifier = {
+						modifier = gpm_low_gravity_2
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_hostile_flora" }
+					remove_modifier = gpm_hostile_flora
+					add_modifier = {
+						modifier = gpm_non_hostile_flora
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_toxic_gas" }
+					remove_modifier = gpm_toxic_gas
+					add_deposit = d_tec_preserved_eco_ecology
+					}
+				if = {
+					limit = { has_modifier = "gpm_titanic_predators" }
+					remove_modifier = gpm_titanic_predators
+					add_modifier = {
+						modifier = gpm_good_titanic_predators
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_unusual_seasons" }
+					remove_modifier = gpm_unusual_seasons
+					add_modifier = {
+						modifier = gpm_perfect_seasons
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_simple_organisms" }
+					remove_modifier = gpm_simple_organisms
+					add_modifier = {
+						modifier = gpm_newly_evolved_complex_organisms
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_unusual_formations" }
+					remove_modifier = gpm_unusual_formations
+					add_modifier = {
+						modifier = gpm_good_unusual_formations
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_great_temperature_variation" }
+					remove_modifier = gpm_great_temperature_variation
+					add_modifier = {
+						modifier = gpm_perfect_seasons
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_ice_age" }
+					remove_modifier = gpm_ice_age
+					add_deposit = d_tec_preserved_eco_mining
+					}
+				if = {
+					limit = { has_modifier = "gpm_locust_plagues" }
+					remove_modifier = gpm_locust_plagues
+					add_modifier = {
+						modifier = gpm_good_locust_plagues
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_resilent_parasites" }
+					remove_modifier = gpm_resilent_parasites
+					add_modifier = {
+						modifier = gpm_symbiotic_life
+						days = -1
+						}
+					}
+				if = {
+					limit = { has_modifier = "gpm_trubbles" }
+					remove_modifier = gpm_trubbles
+					add_modifier = {
+						modifier = gpm_docile_trubbles
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_arachnophobia" }
+					remove_modifier = gpm_arachnophobia
+					add_modifier = {
+						modifier = gpm_docile_arachnophobia
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_giant_worm" }
+					remove_modifier = gpm_giant_worm
+					add_modifier = {
+						modifier = gpm_docile_giant_worm
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_sandstorms" }
+					remove_modifier = gpm_sandstorms
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "gpm_quicksand" }
+					remove_modifier = gpm_quicksand
+					add_deposit = d_tec_preserved_eco_mining
+				}
+				if = {
+					limit = { has_modifier = "gpm_blizzards" }
+					remove_modifier = gpm_blizzards
+					add_modifier = {
+						modifier = gpm_never_ending_aurora
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_abominable_predators" }
+					remove_modifier = gpm_abominable_predators
+					add_modifier = {
+						modifier = gpm_docile_abominable_predators
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_giant_ocean_snakes" }
+					remove_modifier = gpm_giant_ocean_snakes
+					add_modifier = {
+						modifier = gpm_docile_giant_ocean_snakes
+						days = -1
+					}
+				}
+				if = {
+					limit = { has_modifier = "gpm_cursed_world" }
+					remove_modifier = gpm_cursed_world
+					add_deposit = d_tec_preserved_eco_other
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+		modifier = {
+			factor = 0
+			NOR = { 			
+				has_modifier = "abandoned_terraforming"
+				has_modifier = "dangerous_wildlife"
+				has_modifier = "hazardous_weather"
+				has_modifier = "weak_magnetic_field"
+				has_modifier = "unstable_tectonics"
+				has_modifier = "gpm_unstable_tectonics_2"
+				has_modifier = "tidal_locked"
+				has_modifier = "low_gravity"
+				has_modifier = "high_gravity"
+				has_modifier = "mineral_poor"
+				has_modifier = "atmospheric_aphrodisiac"
+				has_modifier = "atmospheric_hallucinogen"
+				has_modifier = "bleak_planet"
+				has_modifier = "irradiated_planet"
+				has_modifier = "gpm_global_thunderstorms"
+				has_modifier = "gpm_thin_atmospheres"
+				has_modifier = "gpm_strong_volcanism"
+				has_modifier = "gpm_high_gravity_2"
+				has_modifier = "gpm_hostile_flora"
+				has_modifier = "gpm_toxic_gas"
+				has_modifier = "gpm_titanic_predators"
+				has_modifier = "gpm_unusual_seasons"
+				has_modifier = "gpm_simple_organisms"
+				has_modifier = "gpm_unusual_formations"
+				has_modifier = "gpm_great_temperature_variation"
+				has_modifier = "gpm_ice_age"
+				has_modifier = "gpm_locust_plagues"
+				has_modifier = "gpm_resilent_parasites"
+				has_modifier = "gpm_trubbles"
+				has_modifier = "gpm_arachnophobia"
+				has_modifier = "gpm_giant_worm"
+				has_modifier = "gpm_sandstorms"
+				has_modifier = "gpm_quicksand"
+				has_modifier = "gpm_blizzards"
+				has_modifier = "gpm_abominable_predators"
+				has_modifier = "gpm_giant_ocean_snakes"
+				has_modifier = "gpm_cursed_world"					
+			}		
+		}
+	}
+}
+
+tec_outpost_environment_enhance = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 720
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 7500
+			influence = 100
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		OR = {
+			has_valid_civic = civic_tec_eco_engineers	
+			has_valid_civic = civic_tec_eco_keepers
+			has_valid_civic = civic_environmentalist
+			has_valid_civic = civic_tec_corporate_megareclamators
+			has_ethic = ethic_gestalt_preservation
+			has_civic = civic_tec_machine_terraformers	
+		}
+		exists = root
+		root = {
+			OR = {
+				uses_district_set = standard
+				tec_is_ringworld = yes
+				tec_is_elysium = yes
+				tec_is_ecoworld = yes
+			}
+			NOT = {
+				has_planet_flag = tec_enhanced_by_terraformers
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			hidden_effect = {
+				# Adds variables
+				root.from = {
+					change_variable = {
+						which = tec_terraformed_worlds
+						value = 1
+					}
+				}
+				set_planet_flag = tec_enhanced_by_terraformers
+				#for regular planets, regular modifiers
+				if = {
+					limit = { 
+						uses_district_set = standard
+					}
+					#keepers
+					if = {
+						limit = { 
+							root.from = {
+								has_valid_civic = civic_tec_eco_keepers
+							}
+							OR = {
+								has_deposit = d_tec_sanctified_eco_grounds
+								num_uncleared_blockers > 0
+							}
+						}
+						while = {
+							count = 2
+							add_deposit = d_tec_sanctified_eco_grounds
+						}
+					}
+					if = {
+						limit = { 
+							root.from = {
+								has_valid_civic = civic_tec_eco_keepers
+							}
+							OR = {
+								NOT = {
+									has_deposit = d_tec_sanctified_eco_grounds	
+								}
+								tec_is_viable_lifegood_planet = yes # perfect world
+							}
+						}
+						while = {
+							count = 4
+							add_deposit = d_tec_sanctified_eco_grounds
+						}
+					}
+					#terraformers
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_tec_eco_engineers	
+									has_civic = civic_tec_machine_terraformers			
+								}
+							}
+							OR = {
+								num_uncleared_blockers > 0
+	
+								has_deposit = d_tec_eco_basin
+								has_deposit = d_tec_eco_glacier
+								has_deposit = d_tec_eco_jungle
+								has_deposit = d_tec_eco_kelp
+								has_deposit = d_tec_eco_mountains_range
+								has_deposit = d_tec_eco_sinkhole
+								has_deposit = d_tec_eco_swamp
+								has_deposit = d_tec_eco_volcano
+								has_deposit = d_tec_eco_wildlife_blocker
+							}
+						}
+						while = {
+							count = 2
+							random_list = {
+								10 = {
+									add_deposit = d_tec_eco_basin
+								}
+								10 = {
+									add_deposit = d_tec_eco_glacier
+								}
+								10 = {
+									add_deposit = d_tec_eco_jungle
+								}
+								10 = {
+									add_deposit = d_tec_eco_kelp
+								}
+								10 = {
+									add_deposit = d_tec_eco_mountains_range
+								}
+								10 = {
+									add_deposit = d_tec_eco_sinkhole
+								}
+								10 = {
+									add_deposit = d_tec_eco_swamp
+								}
+								10 = {
+									add_deposit = d_tec_eco_volcano
+								}
+								10 = {
+									add_deposit = d_tec_eco_wildlife_blocker
+								}
+							}
+						}
+					}
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_tec_eco_engineers	
+									has_civic = civic_tec_machine_terraformers			
+								}
+							}
+							OR = {
+								NOR = {
+									has_deposit = d_tec_eco_basin
+									has_deposit = d_tec_eco_glacier
+									has_deposit = d_tec_eco_jungle
+									has_deposit = d_tec_eco_kelp
+									has_deposit = d_tec_eco_mountains_range
+									has_deposit = d_tec_eco_sinkhole
+									has_deposit = d_tec_eco_swamp
+									has_deposit = d_tec_eco_volcano
+									has_deposit = d_tec_eco_wildlife_blocker
+								}
+								tec_is_viable_lifegood_planet = yes # perfect world
+							}
+						}
+						while = {
+							count = 4
+							random_list = {
+								10 = {
+									add_deposit = d_tec_eco_basin
+								}
+								10 = {
+									add_deposit = d_tec_eco_glacier
+								}
+								10 = {
+									add_deposit = d_tec_eco_jungle
+								}
+								10 = {
+									add_deposit = d_tec_eco_kelp
+								}
+								10 = {
+									add_deposit = d_tec_eco_mountains_range
+								}
+								10 = {
+									add_deposit = d_tec_eco_sinkhole
+								}
+								10 = {
+									add_deposit = d_tec_eco_swamp
+								}
+								10 = {
+									add_deposit = d_tec_eco_volcano
+								}
+								10 = {
+									add_deposit = d_tec_eco_wildlife_blocker
+								}
+							}
+						}
+					}
+					#environmentalist
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_environmentalist
+									has_valid_civic = civic_tec_corporate_megareclamators
+									AND = {
+										has_ethic = ethic_gestalt_preservation
+										NOT = {
+											has_civic = civic_tec_machine_terraformers
+										}
+									}
+								}
+								
+							}
+							OR = {
+								num_uncleared_blockers > 0
+	
+								has_deposit = d_tec_preserved_eco_ecology
+								has_deposit = d_tec_preserved_eco_mining
+								has_deposit = d_tec_preserved_eco_other
+							}
+						}
+						while = {
+							count = 2
+							random_list = {
+								10 = {
+									add_deposit = d_tec_preserved_eco_ecology
+								}
+								10 = {
+									add_deposit = d_tec_preserved_eco_mining
+								}
+								10 = {
+									add_deposit = d_tec_preserved_eco_other
+								}
+							}
+						}
+					}
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_environmentalist
+									has_valid_civic = civic_tec_corporate_megareclamators
+									AND = {
+										has_ethic = ethic_gestalt_preservation
+										NOT = {
+											has_civic = civic_tec_machine_terraformers
+										}
+									}
+								}
+								
+							}
+							OR = {
+								NOR = {
+									has_deposit = d_tec_preserved_eco_ecology
+									has_deposit = d_tec_preserved_eco_mining
+									has_deposit = d_tec_preserved_eco_other
+								}
+								tec_is_viable_lifegood_planet = yes # perfect world
+							}
+						}
+						while = {
+							count = 4
+							random_list = {
+								10 = {
+									add_deposit = d_tec_preserved_eco_ecology
+								}
+								10 = {
+									add_deposit = d_tec_preserved_eco_mining
+								}
+								10 = {
+									add_deposit = d_tec_preserved_eco_other
+								}
+							}
+						}
+					}
+				}
+				#for ringworlds, special modifiers
+				if = {
+					limit = { 
+						tec_is_elysium = yes
+					}
+					if = {
+						limit = { 
+							NOT = { 
+								has_modifier = pm_tec_engineered_weather
+							}
+						}
+						add_modifier = {
+							modifier = pm_tec_engineered_weather
+							days = -1
+						}
+					}
+					if = {
+						limit = {
+							root.from = {
+								has_valid_civic = civic_tec_eco_keepers			
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						add_deposit = d_tec_sanctified_eco_grounds_ring
+						add_deposit = d_tec_sanctified_eco_grounds_ring
+						
+					}
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_tec_eco_engineers	
+									has_civic = civic_tec_machine_terraformers			
+								}		
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						while = {
+							count = 2
+							random_list = {
+								10 = {
+									add_deposit = d_tec_eco_synthetic_life
+								}
+								10 = {
+									add_deposit = d_tec_eco_synthetic_volcano
+								}
+								10 = {
+									add_deposit = d_tec_eco_synthetic_flora
+								}
+							}
+						}
+					}
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_tec_corporate_megareclamators
+									has_valid_civic = civic_environmentalist
+									AND = {
+										has_ethic = ethic_gestalt_preservation
+										NOT = {
+											has_civic = civic_tec_machine_terraformers
+										}
+									}
+								}
+											
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						add_deposit = d_tec_preserved_eco_ring
+						add_deposit = d_tec_preserved_eco_ring_2
+					}
+				}
+				#for elysiums
+				if = {
+					limit = { 
+						tec_is_ringworld = yes
+					}
+					if = {
+						limit = { 
+							NOT = { 
+								has_modifier = pm_tec_engineered_weather
+							}
+						}
+						add_modifier = {
+							modifier = pm_tec_engineered_weather
+							days = -1
+						}
+					}
+					if = {
+						limit = {
+							root.from = {
+								has_valid_civic = civic_tec_eco_keepers			
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						add_deposit = d_tec_sanctified_eco_grounds_ring
+					}
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+									has_valid_civic = civic_tec_eco_engineers	
+									has_civic = civic_tec_machine_terraformers			
+								}	
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						while = {
+							count = 1
+							random_list = {
+								10 = {
+									add_deposit = d_tec_eco_synthetic_life
+								}
+								10 = {
+									add_deposit = d_tec_eco_synthetic_volcano
+								}
+								10 = {
+									add_deposit = d_tec_eco_synthetic_flora
+								}
+							}
+						}
+					}
+					if = {
+						limit = { 
+							root.from = {
+								OR = {
+								#	has_valid_civic = civic_tec_corporate_exploiters
+									has_valid_civic = civic_environmentalist
+									AND = {
+										has_ethic = ethic_gestalt_preservation
+										NOT = {
+											has_civic = civic_tec_machine_terraformers
+										}
+									}
+								}
+											
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						random_list = {
+							10 = {
+								add_deposit = d_tec_preserved_eco_ring
+							}
+							10 = {
+								add_deposit = d_tec_preserved_eco_ring_2
+							}
+						}		
+					}
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Re-engineering
+
+tec_outpost_environment_engineers = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 720
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 5000
+			influence = 75
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		tec_is_engineer_empire = yes
+		fromfrom.planet = {
+			tec_is_space_arcology = yes
+			NOT = {
+				has_planet_flag = tec_enhanced_by_terraformers
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			hidden_effect = {
+				set_planet_flag = tec_enhanced_by_terraformers
+				#for regular planets, regular modifiers
+				if = {
+					limit = { 
+						tec_is_habitat = yes
+					}
+					#master engineers
+					if = {
+						limit = { 
+							NOT = { 
+								has_modifier = pm_tec_engineered_habitat
+							}
+						}
+						add_modifier = {
+							modifier = pm_tec_engineered_habitat
+							days = -1
+						}
+					}
+					if = {
+						limit = {
+							this.solar_system = {
+								any_system_planet = {
+									OR = {
+										has_planet_flag = precursor_world
+										has_planet_flag = gpm_is_precursor_world
+									}
+								}
+							}
+							NOT = {
+								has_deposit = gpm_d_archeology_precursor_infrastructure
+							}
+						}
+						add_deposit = d_tec_engineered_precursor
+					}
+					while = {
+						count = 2
+						random_list = {
+							10 = {
+								add_deposit = d_tec_engineered_hangar
+							}
+							10 = {
+								add_deposit = d_tec_engineered_industrial
+							}
+							10 = {
+								add_deposit = d_tec_engineered_refinery
+							}
+						}
+					}
+				}
+				#for ringworlds, special modifiers
+				if = {
+					limit = { 
+						OR = {
+							tec_is_ringworld = yes
+							tec_is_elysium = yes
+							tec_is_modded_space_arcology = yes
+						}		
+					}
+					if = {
+						limit = { 
+							NOT = { 
+								has_modifier = pm_tec_engineered_weather
+							}
+						}
+						add_modifier = {
+							modifier = pm_tec_engineered_weather
+							days = -1
+						}
+					}
+					if = {
+						limit = { 
+							root.from = {
+								tec_is_engineer_empire = yes			
+							}
+						}
+						add_deposit = d_tec_eco_terraformed_ring
+						#double for elysiums
+						if = {
+							limit = {
+								tec_is_elysium = yes
+							}
+							add_deposit = d_tec_eco_terraformed_ring
+						}
+						while = {
+							count = 2
+							random_list = {
+								10 = {
+									add_deposit = d_tec_engineered_eco_ring_1
+								}
+								10 = {
+									add_deposit = d_tec_preserved_eco_ring_2			
+								}
+								10 = {
+									add_deposit = d_tec_engineered_eco_ring_3
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Overstripping
+
+tec_outpost_overstrip_energy = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			influence = 50
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		tec_can_enact_overstrip = yes
+
+		exists = planet
+		planet = {
+			uses_district_set = standard
+			tec_is_arcology = no
+			habitable_structure = no
+			tec_has_infinite_menial_districts = no
+			NOR = {
+				count_deposits = {
+					count = 3
+					type = d_tec_overstripped_energy
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_mining
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_farming
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_housing
+				}
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_overstrip_energy.tooltip
+			add_deposit = d_tec_overstripped_energy
+			hidden_effect = {
+				remove_deposit = d_tec_overstripped_mining
+				remove_deposit = d_tec_overstripped_farming
+				remove_deposit = d_tec_overstripped_housing
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_overstrip_mining = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			influence = 50
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		tec_can_enact_overstrip = yes
+		exists = planet
+		planet = {
+			uses_district_set = standard
+			tec_is_arcology = no
+			habitable_structure = no
+			tec_has_infinite_menial_districts = no
+			NOR = {
+				count_deposits = {
+					count = 3
+					type = d_tec_overstripped_mining
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_energy
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_farming
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_housing
+				}
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_overstrip_mining.tooltip
+			add_deposit = d_tec_overstripped_mining
+			hidden_effect = {
+				remove_deposit = d_tec_overstripped_energy
+				remove_deposit = d_tec_overstripped_farming
+				remove_deposit = d_tec_overstripped_housing
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_overstrip_food = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+			influence = 50
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		tec_can_enact_overstrip = yes
+		exists = planet
+		planet = {
+			uses_district_set = standard
+			tec_is_arcology = no
+			habitable_structure = no
+			tec_has_infinite_menial_districts = no
+			NOR = {
+				count_deposits = {
+					count = 3
+					type = d_tec_overstripped_farming
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_energy
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_mining
+				}
+				count_deposits = {
+					count > 1
+					type = d_tec_overstripped_housing
+				}
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_overstrip_food.tooltip
+			add_deposit = d_tec_overstripped_farming
+			hidden_effect = {
+				remove_deposit = d_tec_overstripped_mining
+				remove_deposit = d_tec_overstripped_energy
+				remove_deposit = d_tec_overstripped_housing
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Industrialize
+
+tec_outpost_industrialize = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 480
+
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 800
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_tradition = tr_tec_artifice_final_2
+				}
+			}
+			minerals = -400
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_civic = civic_tec_corporate_industrialcorp
+		is_regular_empire = yes 
+		exists = planet
+		planet = {
+			habitable_structure = no
+			tec_is_arcology = no
+			NOR = { 
+				is_planet_class = pc_relic
+				is_planet_class = pc_city
+				is_planet_class = pc_hive
+				is_planet_class = pc_machine
+				has_modifier = "pm_tec_industrialized_planet"
+				has_modifier = "pm_tec_industrialized_arcology"
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+		fromfrom.planet = {
+			custom_tooltip = decision_tec_industrialize_effects
+			hidden_effect = {
+			
+				add_deposit = d_tec_manufactory
+				add_modifier = { modifier = "pm_tec_industrialized_planet" days = -1 }
+				random_list = {
+				1 = {
+					# sometimes construction doesn't always go as planned
+					add_planet_devastation = 20
+					add_deposit = d_radioactive_wasteland
+				}
+				4 = {
+					add_deposit = d_failing_infrastructure
+					add_deposit = d_failing_infrastructure
+				}
+				2 = {
+					modifier = {
+						factor = 0
+						OR = {
+							num_districts = { type = district_farming value = 0 }
+							num_districts = { type = district_farming value > 5 }
+						}
+					}
+					remove_district = district_farming
+					add_deposit = d_failing_infrastructure
+				}
+				2 = {
+					modifier = {
+						factor = 0
+						num_districts = { type = district_farming value < 5 }
+					}
+					remove_district = district_farming
+					remove_district = district_farming
+				}
+		
+				}
+			
+			
+				
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_industrialize_arcology = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 600
+
+	resources = {
+		category = decisions
+		cost = {
+			minerals = 2000
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_tradition = tr_tec_artifice_final_2
+				}
+			}
+			minerals = -1000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_civic = civic_tec_corporate_industrialcorp
+		is_regular_empire = yes 
+
+		exists = planet
+		planet = {
+			habitable_structure = no
+			uses_district_set = city_world
+			NOR = { 
+				has_modifier = "pm_tec_industrialized_planet"
+				has_modifier = "pm_tec_industrialized_arcology"
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+		fromfrom.planet = {
+			custom_tooltip = decision_tec_industrialize_effects
+			hidden_effect = {
+				add_deposit = d_tec_manufactory_arcology
+				add_modifier = { modifier = "pm_tec_industrialized_arcology" days = -1 }
+				
+				random_list = {
+					1 = {
+						# sometimes construction doesn't always go as planned
+						add_planet_devastation = 20
+					}
+					2 = {
+						modifier = {
+							factor = 0
+							num_districts = { type = district_arcology_housing value = 0 }
+						}
+						add_planet_devastation = 10
+						remove_district = district_arcology_housing
+					}
+					2 = {
+						modifier = {
+							factor = 0
+							num_districts = { type = district_arcology_leisure value = 0 }
+						}
+						add_planet_devastation = 10
+						remove_district = district_arcology_leisure
+					}
+					2 = {
+						modifier = {
+							factor = 0
+							num_districts = { type = district_tec_arcology_trade value = 0 }
+						}
+						add_planet_devastation = 10
+						remove_district = district_tec_arcology_trade
+					}
+					5 = {
+						#do nothing
+					}
+					
+				}
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_deindustrialize = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 1200
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 1000
+		}
+		cost = {
+			trigger = {
+				owner = {
+					has_tradition = tr_tec_artifice_final_2
+				}
+			}
+			energy = -500
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		NOT = { has_civic = civic_tec_corporate_industrialcorp }
+		is_regular_empire = yes 
+
+		exists = planet
+		planet = {
+			habitable_structure = no
+			OR = {
+				has_modifier = "pm_tec_industrialized_planet"
+				has_modifier = "pm_tec_industrialized_arcology"
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+		fromfrom.planet = {
+			custom_tooltip = decision_tec_deindustrialize_effects
+			hidden_effect = {
+				remove_deposit = d_tec_manufactory
+				remove_deposit = d_tec_manufactory_arcology
+				remove_modifier = pm_tec_industrialized_planet
+				remove_modifier = pm_tec_industrialized_arcology
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Ring world
+
+tec_outpost_basic_ring = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	
+
+	build_time = 900
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_galactic_wonders = yes
+
+		exists = planet
+		planet = {
+			tec_is_ringworld = yes
+			OR = { 
+				has_planet_flag = tec_rw_spec_science
+				has_planet_flag = tec_rw_spec_industry
+				has_planet_flag = tec_rw_spec_admin
+				#	has_planet_flag = tec_ecumenopolis_was_relic_planet
+			}
+			NOT = {
+				has_planet_flag = tec_rw_spec_precursor
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_basic_ring_effects
+			hidden_effect = {
+				remove_planet_flag = tec_rw_spec_science
+				remove_planet_flag = tec_rw_spec_industry
+					remove_planet_flag = tec_rw_spec_cg			# - subspec
+					remove_planet_flag = tec_rw_spec_naval		# - subspec
+				remove_planet_flag = tec_rw_spec_admin
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_science_ring = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 900
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_galactic_wonders = yes
+
+		exists = planet
+		planet = {
+			tec_is_ringworld = yes
+			NOT = {
+				has_planet_flag = tec_rw_spec_science
+				has_planet_flag = tec_rw_spec_precursor
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_science_ring_effects
+			hidden_effect = {
+				set_planet_flag = tec_rw_spec_science
+
+				#anticheese
+				remove_planet_flag = tec_rw_spec_industry
+					remove_planet_flag = tec_rw_spec_cg			# - subspec
+					remove_planet_flag = tec_rw_spec_naval		# - subspec
+				remove_planet_flag = tec_rw_spec_admin
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_fabrication_ring = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 900
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_galactic_wonders = yes
+
+		exists = planet
+		planet = {
+			tec_is_ringworld = yes
+			NOT = {
+				has_planet_flag = tec_rw_spec_industry
+				has_planet_flag = tec_rw_spec_precursor
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_industry_ring_effects
+			hidden_effect = {
+				set_planet_flag = tec_rw_spec_industry
+					set_planet_flag = tec_rw_spec_naval			# - subspec
+				#anticheese
+				remove_planet_flag = tec_rw_spec_admin
+				remove_planet_flag = tec_rw_spec_science
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# Elysium
+
+tec_outpost_menial_ely = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 500
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_tradition = tr_tec_artifice_finish
+
+		exists = planet
+		planet = {
+			tec_is_elysium = yes
+			OR = { 
+				has_planet_flag = tec_civ_elysium
+				has_planet_flag = tec_mil_elysium
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_menial_ely_effects
+			hidden_effect = {
+				remove_planet_flag = tec_civ_elysium
+				remove_planet_flag = tec_mil_elysium
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_civ_ely = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 500
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_tradition = tr_tec_artifice_finish
+
+		exists = planet
+		planet = {
+			tec_is_elysium = yes
+			NOT = {
+				has_planet_flag = tec_civ_elysium
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_civ_ely_effects
+			hidden_effect = {
+				remove_planet_flag = tec_mil_elysium
+				set_planet_flag = tec_civ_elysium
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_mil_ely = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 360
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 500
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_tradition = tr_tec_artifice_finish
+
+		exists = planet
+		planet = {
+			tec_is_elysium = yes
+			NOT = {
+				has_planet_flag = tec_mil_elysium
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_civ_ely_effects
+			hidden_effect = {
+				remove_planet_flag = tec_civ_elysium
+				set_planet_flag = tec_mil_elysium
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+# ecumenopolis
+
+tec_outpost_military_ecu = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 900
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_ascension_perk = ap_arcology_project
+
+		exists = planet
+		planet = {
+			is_planet_class = pc_city
+			NOT = {
+				has_planet_flag = tec_ecumenopolis_spec_militarized
+				has_planet_flag = tec_ecumenopolis_spec_science
+				has_planet_flag = tec_ecumenopolis_spec_admin
+				has_planet_flag = tec_ecumenopolis_spec_precursor
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_military_ecu_effects
+			hidden_effect = {
+				
+				set_planet_flag = tec_ecumenopolis_spec_militarized
+				set_planet_flag = tec_ecumenopolis_militarized_army
+
+				#anticheese
+				remove_planet_flag = tec_ecumenopolis_spec_science
+				remove_planet_flag = tec_ecumenopolis_refinery_nospec
+				remove_planet_flag = tec_ecumenopolis_spec_admin
+				remove_planet_flag = tec_ecumenopolis_spec_precursor
+				remove_planet_flag = tec_ecumenopolis_militarized_navy
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_science_ecu = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 900
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_ascension_perk = ap_arcology_project
+		exists = planet
+		planet = {
+			is_planet_class = pc_city
+			NOT = {
+				has_planet_flag = tec_ecumenopolis_spec_militarized
+				has_planet_flag = tec_ecumenopolis_spec_science
+				has_planet_flag = tec_ecumenopolis_spec_admin
+				has_planet_flag = tec_ecumenopolis_spec_precursor
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_science_ecu_effects
+			hidden_effect = {
+				
+				set_planet_flag = tec_ecumenopolis_spec_science
+				set_planet_flag = tec_ecumenopolis_refinery_nospec
+
+				#anticheese
+				remove_planet_flag = tec_ecumenopolis_spec_militarized
+				remove_planet_flag = tec_ecumenopolis_militarized_army
+				remove_planet_flag = tec_ecumenopolis_spec_admin
+				remove_planet_flag = tec_ecumenopolis_spec_precursor
+				remove_planet_flag = tec_ecumenopolis_militarized_navy
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}
+
+tec_outpost_administration_ecu = {
+	entity = ""
+	
+	portrait = "GFX_megastructure_construction_background"
+	construction_blocks_others = no
+	construction_blocked_by_others = no
+	upgrade_from = { frameworld_outpost_0 frameworld_outpost_marked_0 }
+	
+
+	build_time = 900
+
+	resources = {
+		category = decisions
+		cost = {
+			alloys = 2000
+		}
+	}
+
+	potential = {
+		has_origin = origin_frameworld
+		has_ascension_perk = ap_arcology_project
+
+		exists = planet
+		planet = {
+			is_planet_class = pc_city
+			NOT = {
+				has_planet_flag = tec_ecumenopolis_spec_militarized
+				has_planet_flag = tec_ecumenopolis_spec_science
+				has_planet_flag = tec_ecumenopolis_spec_admin
+				has_planet_flag = tec_ecumenopolis_spec_precursor
+			}
+		}
+	}
+
+	possible = { exists = starbase		custom_tooltip = { fail_text = "requires_inside_border" is_inside_border = from } }
+
+	on_build_complete = {
+    	fromfrom.planet = {
+			custom_tooltip = decision_tec_science_ecu_effects
+			hidden_effect = {
+				set_planet_flag = tec_ecumenopolis_spec_admin
+
+				#anticheese
+				remove_planet_flag = tec_ecumenopolis_spec_science
+				remove_planet_flag = tec_ecumenopolis_refinery_nospec
+
+				remove_planet_flag = tec_ecumenopolis_spec_militarized
+				remove_planet_flag = tec_ecumenopolis_militarized_army
+
+				remove_planet_flag = tec_ecumenopolis_spec_precursor
+			}
+		}
+		remove_megastructure = fromfrom
+	}
+
+	ai_weight = {
+		weight = 1
+	}
+}

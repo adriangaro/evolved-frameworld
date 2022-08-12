@@ -1,0 +1,554 @@
+# Frameworld outpost resource production planet categories
+# defines special output ratios for various special planets or district sets
+# see common/script_values/giga_frameworld_outpost_values.txt for how this is all used
+# - TTFTCUTS
+
+##############################################################################################################
+# SPECIAL PLANET TYPE LIST
+
+giga_frameworld_outpost_special = {
+	base = 0
+
+	# vanilla special planets
+	add = value:giga_frameworld_outpost_district_set_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|SET|machine_world| # machine world
+	add = value:giga_frameworld_outpost_district_set_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|SET|hive_world| # hive world
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_relic| # relic world
+	add = value:giga_frameworld_outpost_district_set_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|SET|city_world| # ecumenopolis district set
+
+	# gigas special planets
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_giga_planetary_computer| # computing complex
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_habitable_gas_giant| # stabilised gas giant
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_flusion_gaia_ecu| # flusio-arcology
+
+	# ring worlds
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_ringworld_habitable| # vanilla ring world
+	add = value:giga_frameworld_outpost_district_set_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|SET|shattered_ring_world| # shattered ring (and alderson)
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_ringworld_machine| # machine ring
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_ringworld_hive| # hive ring
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_ringworld_city| # ecumenopolis ring
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_interstellar_ringworld_habitable| # interstellar ring
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_giga_penrose_habitable|USE|pc_ringworld_habitable| # penrose ring
+
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_squareworld_habitable| # squareworld
+
+	# alderson slices
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_alderson_slice_gaia| # alderson gaia
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_alderson_slice_ecu|USE|pc_ringworld_city|MULT|6| # alderson ecumenopolis
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_alderson_slice_machine|USE|pc_ringworld_machine|MULT|6| # alderson machine
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_alderson_slice_hive|USE|pc_ringworld_hive|MULT|6| # alderson hive
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_alderson_slice_pc|USE|pc_giga_planetary_computer|MULT|6| # alderson computing complex
+
+	add = value:evolved_giga_frameworld_outpost_modded|RESOURCE|$RESOURCE$|SCALE|$SCALE$|
+}
+
+evolved_giga_frameworld_outpost_modded = {
+	base = 0 
+
+	# elysium
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_tec_elysium|
+	add = value:giga_frameworld_outpost_planet_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|PLANET|pc_tec_protoworld|
+}
+
+##############################################################################################################
+# specific planet types
+
+# ecumenopolis
+	giga_frameworld_outpost_planet_jobs_city_world = {
+		base = 0
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_unspecialized_ecu|USE|city_world_unspecialized|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_military_ecu|USE|city_world_military|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_research_ecu|USE|city_world_research|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_admin_ecu|USE|city_world_admin|
+
+		[[energy]]
+		[[minerals]]
+		[[food]]
+
+		[[alloys]]
+		[[consumer_goods]]
+
+		[[physics_research]]
+		[[society_research]]
+		[[engineering_research]]
+
+		[[unity]]
+
+		[[exotic_gases]]
+		[[volatile_motes]]
+		[[rare_crystals]]
+
+		[[sr_dark_matter]]
+		[[sr_zro]]
+		[[sr_living_metal]]
+		[[nanites]]
+	}
+
+	giga_frameworld_outpost_planet_jobs_city_world_unspecialized = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|50|
+								add = value:giga_frameworld_outpost_size_fraction_if_no_cg|FRACTION|25|	]
+		[[consumer_goods] 		weight = value:giga_frameworld_outpost_size_fraction_if_cg|FRACTION|25| ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|25| ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+	}
+
+	# ecumenopolis
+	giga_frameworld_outpost_planet_jobs_city_world_military = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|100| ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+	}
+
+	giga_frameworld_outpost_planet_jobs_city_world_research = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|100| ]
+		[[society_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|100| ]
+		[[engineering_research] weight = value:giga_frameworld_outpost_size_fraction|FRACTION|100| ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+		
+		[[minor_artifacts] 		weight = 0 ]
+	}
+
+	giga_frameworld_outpost_planet_jobs_city_world_admin = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|100| ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+		
+		[[minor_artifacts] 		weight = 0 ]
+	}
+
+
+
+
+# ring world
+	giga_frameworld_outpost_planet_jobs_pc_ringworld_habitable = {
+		base = 0
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_menial_rw|USE|pc_ringworld_habitable_menial|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_science_rw|USE|pc_ringworld_habitable_science|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_industry_rw|USE|pc_ringworld_habitable_industry|
+		
+		[[energy]]
+		[[minerals]]
+		[[food]]
+
+		[[alloys]]
+		[[consumer_goods]]
+
+		[[physics_research]]
+		[[society_research]]
+		[[engineering_research]]
+
+		[[unity]]
+
+		[[exotic_gases]]
+		[[volatile_motes]]
+		[[rare_crystals]]
+
+		[[sr_dark_matter]]
+		[[sr_zro]]
+		[[sr_living_metal]]
+		[[nanites]]
+
+		mult = 2.0
+	}
+
+	giga_frameworld_outpost_planet_jobs_pc_ringworld_habitable_menial = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| 
+								add = value:giga_frameworld_outpost_size_fraction_if_no_food|FRACTION|17| ]
+		[[minerals] 			weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| 
+								add = value:giga_frameworld_outpost_size_fraction_if_no_food|FRACTION|17| ]
+		[[food] 				weight = value:giga_frameworld_outpost_size_fraction_if_food|FRACTION|33| ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = value:giga_frameworld_outpost_size_fraction_mult|FRACTION|5|DIV|2|
+	}
+
+	giga_frameworld_outpost_planet_jobs_pc_ringworld_habitable_science = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|40| ]
+		[[society_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|40| ]
+		[[engineering_research] weight = value:giga_frameworld_outpost_size_fraction|FRACTION|40| ]
+
+		[[unity] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|40| ]
+
+		[[exotic_gases] 		weight = value:giga_frameworld_outpost_size_fraction|FRACTION|4| ] # balanced down cause broken otherwise
+		[[volatile_motes] 		weight = value:giga_frameworld_outpost_size_fraction|FRACTION|4| ]
+		[[rare_crystals] 		weight = value:giga_frameworld_outpost_size_fraction|FRACTION|4| ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = value:giga_frameworld_outpost_size_fraction_mult|FRACTION|5|DIV|2|
+	}
+
+	giga_frameworld_outpost_planet_jobs_pc_ringworld_habitable_industry = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|50|
+								add = value:giga_frameworld_outpost_size_fraction_if_no_cg|FRACTION|50|	]
+		[[consumer_goods] 		weight = value:giga_frameworld_outpost_size_fraction_if_cg|FRACTION|50| ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = value:giga_frameworld_outpost_size_fraction_mult|FRACTION|5|DIV|2|
+	}
+
+# interstellar ring
+	giga_frameworld_outpost_planet_jobs_pc_interstellar_ringworld_habitable = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = value:giga_frameworld_outpost_size_fraction|FRACTION|25| ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|10| ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+	}
+
+# square world
+	giga_frameworld_outpost_planet_jobs_pc_squareworld_habitable = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|50| ]
+		[[society_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|50| ]
+		[[engineering_research] weight = value:giga_frameworld_outpost_size_fraction|FRACTION|50| ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = value:giga_frameworld_outpost_size_fraction|FRACTION|5| ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+	}
+
+# elysium
+
+	giga_frameworld_outpost_planet_jobs_pc_tec_elysium = {
+		base = 0
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_menial_elysium|USE|pc_tec_elysium_menial|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_civilian_elysium|USE|pc_tec_elysium_civilian|
+		add = value:giga_frameworld_outpost_trigger_jobs|RESOURCE|$RESOURCE$|SCALE|$SCALE$|TRIGGER|tec_is_military_elysium|USE|pc_tec_elysium_military|
+
+		[[energy]]
+		[[minerals]]
+		[[food]]
+
+		[[alloys]]
+		[[consumer_goods]]
+
+		[[physics_research]]
+		[[society_research]]
+		[[engineering_research]]
+
+		[[unity]]
+
+		[[exotic_gases]]
+		[[volatile_motes]]
+		[[rare_crystals]]
+
+		[[sr_dark_matter]]
+		[[sr_zro]]
+		[[sr_living_metal]]
+		[[nanites]]
+	}
+
+	giga_frameworld_outpost_planet_jobs_pc_tec_elysium_menial = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| 
+								add = value:giga_frameworld_outpost_size_fraction_if_no_food|FRACTION|17| ]
+		[[minerals] 			weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| 
+								add = value:giga_frameworld_outpost_size_fraction_if_no_food|FRACTION|17| ]
+		[[food] 				weight = value:giga_frameworld_outpost_size_fraction_if_food|FRACTION|33| ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = value:giga_frameworld_outpost_size_fraction_mult|FRACTION|1|
+	}
+
+	giga_frameworld_outpost_planet_jobs_pc_tec_elysium_civilian = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = value:giga_frameworld_outpost_size_fraction_if_no_cg|FRACTION|33| ]
+		[[consumer_goods] 		weight = value:giga_frameworld_outpost_size_fraction_if_cg|FRACTION|33| ]
+
+		[[physics_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| ]
+		[[society_research] 	weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| ]
+		[[engineering_research] weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| ]
+
+		[[unity] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = value:giga_frameworld_outpost_size_fraction_mult|FRACTION|1|
+	}
+
+	giga_frameworld_outpost_planet_jobs_pc_tec_elysium_military = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = 0 ]
+		[[minerals] 			weight = 0 ]
+		[[food] 				weight = 0 ]
+
+		[[alloys] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|100| ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = value:giga_frameworld_outpost_size_fraction_mult|FRACTION|1|
+	}
+
+# protoworld
+
+	giga_frameworld_outpost_planet_jobs_pc_tec_protoworld = {
+		base = $SCALE$ [[RESOURCE]]
+		weight = 0
+
+		[[energy] 				weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| 
+								add = value:giga_frameworld_outpost_size_fraction_if_no_food|FRACTION|17| ]
+		[[minerals] 			weight = value:giga_frameworld_outpost_size_fraction|FRACTION|33| 
+								add = value:giga_frameworld_outpost_size_fraction_if_no_food|FRACTION|17| ]
+		[[food] 				weight = value:giga_frameworld_outpost_size_fraction_if_food|FRACTION|33| ]
+
+		[[alloys] 				weight = 0 ]
+		[[consumer_goods] 		weight = 0 ]
+
+		[[physics_research] 	weight = 0 ]
+		[[society_research] 	weight = 0 ]
+		[[engineering_research] weight = 0 ]
+
+		[[unity] 				weight = 0 ]
+
+		[[exotic_gases] 		weight = 0 ]
+		[[volatile_motes] 		weight = 0 ]
+		[[rare_crystals] 		weight = 0 ]
+
+		[[sr_dark_matter] 		weight = 0 ]
+		[[sr_zro] 				weight = 0 ]
+		[[sr_living_metal] 		weight = 0 ]
+		[[nanites] 				weight = 0 ]
+
+		[[minor_artifacts] 		weight = 0 ]
+
+		mult = 1
+	}

@@ -1,0 +1,28 @@
+[h1]Changes and Additions[/h1]
+[list]
+[*] Support for evolved deposits and new planet types for frameworld outposts.
+[*] Support for evolved civics and ethics in frameworld districts
+[/list]
+
+[h1]Motivation[/h1]
+Frameworld origin is amazing and making it work even more with Evolved is something i wanted in my games.
+
+[h1]Mod Load Order[/h1]
+[list]
+[*] Gigastructures Engineering & More
+[*] Stellaris Evolved - Alpha
+[*] Stellaris Evolved + Gigastructures Frameworld 
+[/list]
+
+[h1]Contacts And Links[/h1]
+[list]
+[*] Discord: MrRoAdd#4232
+[*] Github: https://github.com/adriangaro/evolved-frameworld
+[*] Contributions, bug reports and fixes are appreciated!
+[/list]
+
+[h1]Thanks[/h1]
+[b]Giga Team[/b]
+For the amazing mod and especially TTFTCUTS for insights into the innner working of Frameworlds.
+[b]Rodahtnov[/b]
+For the insights and help he has given me to balance this around Stellaris Evolved. A great overhaul without which I can't play.

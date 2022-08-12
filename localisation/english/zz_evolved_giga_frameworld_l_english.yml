@@ -1,0 +1,127 @@
+﻿l_english:
+
+ decision_tec_frameworld_environment_enhance:0 "$decision_tec_environment_enhance$"
+ decision_tec_frameworld_environment_enhance_effects:0 "$decision_tec_environment_enhance_effects$"
+ decision_tec_frameworld_environment_enhance_desc:0 "$decision_tec_environment_enhance_desc$"
+
+
+ giga_list_category_evolved:99 "§ESTELLARIS EVOLVED§!"
+ giga_list_category_decision:99 "§YDECISION§!"
+ giga_list_category_specialization:99 "§YSPECIALIZATION§!"
+
+# tec_outpost_environment_fix
+ tec_outpost_environment_fix:99 "$decision_tec_environment_fix$"
+ tec_outpost_environment_fix_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_environment_fix_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_environment_fix$§! on frameworld outposts."
+ tec_outpost_environment_fix_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_environment_fix_effects$"
+
+# tec_outpost_environment_harmony
+ tec_outpost_environment_harmony:99 "$decision_tec_environment_harmony$"
+ tec_outpost_environment_harmony_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_environment_harmony_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_environment_harmony$§! on frameworld outposts."
+ tec_outpost_environment_harmony_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_environment_harmony_effects$"
+
+
+# tec_outpost_environment_preserve
+ tec_outpost_environment_preserve:99 "$decision_tec_environment_preserve$"
+ tec_outpost_environment_preserve_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_environment_preserve_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_environment_preserve$§! on frameworld outposts."
+ tec_outpost_environment_preserve_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_environment_preserve_effects$"
+
+# tec_outpost_environment_enhance
+ tec_outpost_environment_enhance:99 "$decision_tec_environment_enhance$"
+ tec_outpost_environment_enhance_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_environment_enhance_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_environment_enhance$§! on frameworld outposts."
+ tec_outpost_environment_enhance_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_environment_enhance_effects$"
+
+# tec_outpost_environment_engineers
+ tec_outpost_environment_engineers:99 "$decision_tec_environment_engineers$"
+ tec_outpost_environment_engineers_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_environment_engineers_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_environment_engineers$§! on frameworld outposts."
+ tec_outpost_environment_engineers_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_environment_engineers_effects$"
+
+# tec_outpost_overstrip_energy
+ tec_outpost_overstrip_energy:99 "$decision_tec_overstrip_energy$"
+ tec_outpost_overstrip_energy_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_overstrip_energy_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_overstrip_energy$§! on frameworld outposts."
+ tec_outpost_overstrip_energy_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_overstrip_energy_effects$"
+
+# tec_outpost_overstrip_mining
+ tec_outpost_overstrip_mining:99 "$decision_tec_overstrip_mining$"
+ tec_outpost_overstrip_mining_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_overstrip_mining_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_overstrip_mining$§! on frameworld outposts."
+ tec_outpost_overstrip_mining_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_overstrip_mining_effects$"
+
+# tec_outpost_overstrip_food
+ tec_outpost_overstrip_food:99 "$decision_tec_overstrip_food$"
+ tec_outpost_overstrip_food_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_overstrip_food_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_overstrip_food$§! on frameworld outposts."
+ tec_outpost_overstrip_food_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_overstrip_food_effects$"
+
+# tec_outpost_industrialize
+ tec_outpost_industrialize:99 "$decision_tec_industrialize$"
+ tec_outpost_industrialize_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_industrialize_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_industrialize$§! on frameworld outposts."
+ tec_outpost_industrialize_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_industrialize_effects$"
+
+# tec_outpost_industrialize_arcology
+ tec_outpost_industrialize_arcology:99 "$decision_tec_industrialize_arcology$"
+ tec_outpost_industrialize_arcology_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_industrialize_arcology_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_industrialize_arcology$§! on frameworld outposts."
+ tec_outpost_industrialize_arcology_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_industrialize_arcology_effects$"
+
+# tec_outpost_deindustrialize
+ tec_outpost_deindustrialize:99 "$decision_tec_deindustrialize$"
+ tec_outpost_deindustrialize_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_deindustrialize_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_decision$ - $giga_list_category_evolved$\nEnact the planetary decision of §Y$decision_tec_deindustrialize$§! on frameworld outposts."
+ tec_outpost_deindustrialize_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_deindustrialize_effects$"
+
+# ringworld
+
+# tec_outpost_basic_ring
+ tec_outpost_basic_ring:99 "$decision_tec_basic_ring$"
+ tec_outpost_basic_ring_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_basic_ring_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_specialization$ - $giga_list_category_evolved$\nEnact the planetary specialization decision of §Y$decision_tec_basic_ring$§! on frameworld ringworld outposts."
+ tec_outpost_basic_ring_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_basic_ring_effects$"
+
+# tec_outpost_science_ring
+ tec_outpost_science_ring:99 "$decision_tec_science_ring$"
+ tec_outpost_science_ring_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_science_ring_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_specialization$ - $giga_list_category_evolved$\nEnact the planetary specialization decision of §Y$decision_tec_science_ring$§! on frameworld ringworld outposts."
+ tec_outpost_science_ring_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_science_ring_effects$"
+
+# tec_outpost_fabrication_ring
+ tec_outpost_fabrication_ring:99 "$decision_tec_fabrication_ring$"
+ tec_outpost_fabrication_ring_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_fabrication_ring_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_specialization$ - $giga_list_category_evolved$\nEnact the planetary specialization decision of §Y$decision_tec_fabrication_ring$§! on frameworld ringworld outposts."
+ tec_outpost_fabrication_ring_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_fabrication_ring_effects$"
+
+# elysium
+
+# tec_outpost_menial_ely
+ tec_outpost_menial_ely:99 "$decision_tec_menial_ely$"
+ tec_outpost_menial_ely_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_menial_ely_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_specialization$ - $giga_list_category_evolved$\nEnact the planetary specialization decision of §Y$decision_tec_menial_ely$§! on frameworld elysium outposts."
+ tec_outpost_menial_ely_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_menial_ely_effects$"
+
+# tec_outpost_civ_ely
+ tec_outpost_civ_ely:99 "$decision_tec_civ_ely$"
+ tec_outpost_civ_ely_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_civ_ely_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_specialization$ - $giga_list_category_evolved$\nEnact the planetary specialization decision of §Y$decision_tec_civ_ely$§! on frameworld elysium outposts."
+ tec_outpost_civ_ely_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_civ_ely_effects$"
+
+# tec_outpost_mil_ely
+ tec_outpost_mil_ely:99 "$decision_tec_mil_ely$"
+ tec_outpost_mil_ely_DESC:99 "If you can see this, something went wrong."
+ tec_outpost_mil_ely_MEGASTRUCTURE_DETAILS:99 "$giga_list_category_specialization$ - $giga_list_category_evolved$\nEnact the planetary specialization decision of §Y$decision_tec_mil_ely$§! on frameworld elysium outposts."
+ tec_outpost_mil_ely_CONSTRUCTION_INFO_DELAYED:99 "$giga_list_additional_data$ - $decision_tec_mil_ely_effects$"
+
+
+# machine capitals
+ decision_tec_frameworld_machine_extraction_capital:0 "$decision_tec_machine_extraction_capital$"
+ decision_tec_frameworld_machine_production_capital:0 "$decision_tec_machine_production_capital$"
+ decision_tec_frameworld_machine_normal_capital:0 "$decision_tec_machine_normal_capital$"
+
+# automation
+ decision_tec_frameworld_automation_on:0 "$decision_tec_automation_on$"
+ decision_tec_frameworld_automation_off:0 "$decision_tec_automation_off$"

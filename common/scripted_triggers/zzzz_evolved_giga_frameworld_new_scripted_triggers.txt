@@ -1,0 +1,11 @@
+# apply job count from matching category if the planet uses this district set
+# has optional redirect to another district set
+
+tec_is_modded_space_arcology = {
+	OR = {
+		uses_district_set = giga_alderson
+		uses_district_set = giga_birch
+		uses_district_set = giga_planet
+		uses_district_set = giga_frameworld
+	}
+}

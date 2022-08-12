@@ -1,0 +1,130 @@
+# - - - - - - - - - - - - - - - - - - - - - 
+# Ecologist Decisions
+# - - - - - - - - - - - - - - - - - - - - - 
+
+# -------------------------------------------------------
+#	TERRAFORM CIVICS
+# -------------------------------------------------------
+
+# Ecological enhacement
+decision_tec_frameworld_environment_enhance = {
+	owned_planets_only = yes
+	enactment_time = 720
+	icon = decision_resort_colony
+
+	resources = {
+		category = decisions
+		cost = {
+			energy = 7500
+			influence = 100
+		}
+	}
+	
+	potential = {
+		is_planet_class = pc_giga_frameworld
+		exists = space_owner
+		owner = {
+			OR = {
+				has_valid_civic = civic_tec_eco_engineers	
+				has_valid_civic = civic_tec_eco_keepers
+				has_valid_civic = civic_environmentalist
+				has_valid_civic = civic_tec_corporate_megareclamators
+				has_ethic = ethic_gestalt_preservation
+				has_civic = civic_tec_machine_terraformers	
+			}
+		}
+		planet = {
+			NOT = {
+				has_planet_flag = tec_enhanced_by_terraformers
+			}
+		}
+	}
+	effect = {
+		custom_tooltip = decision_tec_environment_enhance.tooltip
+		hidden_effect = {
+			# Adds variables
+			owner = {
+				change_variable = {
+					which = tec_terraformed_worlds
+					value = 1
+				}
+			}
+			set_planet_flag = tec_enhanced_by_terraformers
+
+			if = {
+				limit = { 
+					NOT = { 
+						has_modifier = pm_tec_engineered_weather
+					}
+				}
+				add_modifier = {
+					modifier = pm_tec_engineered_weather
+					days = -1
+				}
+			}
+			if = {
+				limit = {
+					owner = {
+						has_valid_civic = civic_tec_eco_keepers			
+					}
+				}
+				add_deposit = d_tec_eco_terraformed_ring
+				add_deposit = d_tec_sanctified_eco_grounds_ring
+			}
+			if = {
+				limit = { 
+					owner = {
+						OR = {
+							has_valid_civic = civic_tec_eco_engineers	
+							has_civic = civic_tec_machine_terraformers			
+						}	
+					}
+				}
+				add_deposit = d_tec_eco_terraformed_ring
+				while = {
+					count = 1
+					random_list = {
+						10 = {
+							add_deposit = d_tec_eco_synthetic_life
+						}
+						10 = {
+							add_deposit = d_tec_eco_synthetic_volcano
+						}
+						10 = {
+							add_deposit = d_tec_eco_synthetic_flora
+						}
+					}
+				}
+			}
+			if = {
+				limit = { 
+					owner = {
+						OR = {
+						#	has_valid_civic = civic_tec_corporate_exploiters
+							has_valid_civic = civic_environmentalist
+							AND = {
+								has_ethic = ethic_gestalt_preservation
+								NOT = {
+									has_civic = civic_tec_machine_terraformers
+								}
+							}
+						}
+									
+					}
+				}
+				add_deposit = d_tec_eco_terraformed_ring
+				random_list = {
+					10 = {
+						add_deposit = d_tec_preserved_eco_ring
+					}
+					10 = {
+						add_deposit = d_tec_preserved_eco_ring_2
+					}
+				}		
+			}
+		}
+	}	
+	ai_weight = {
+		weight = 1
+	}
+}

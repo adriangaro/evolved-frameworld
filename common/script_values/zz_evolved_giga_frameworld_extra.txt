@@ -1,0 +1,35 @@
+giga_frameworld_outpost_trigger_jobs = {
+	base = 0
+
+	modifier = {
+		planet = { $TRIGGER$ = yes }
+
+		weight = value:giga_frameworld_outpost_planet_jobs_$USE$|$RESOURCE$|yes|SCALE|$SCALE$|RESOURCE|$RESOURCE$|
+	}
+
+	[[MULT] mult = $MULT$ ]
+}
+
+
+giga_frameworld_outpost_size_fraction_mult = {
+	weight = planet.trigger:planet_size
+	
+	# add in any district count modifiers
+	complex_trigger_modifier = {
+		trigger = check_modifier_value
+		trigger_scope = planet
+		parameters = {
+			modifier = planet_max_districts_add
+		}
+		mode = add
+	}
+
+	# apply district count multipliers too
+	mult = value:giga_frameworld_outpost_size_mult
+
+	mult = $FRACTION$
+	mult = 0.01
+	[[DIV] divide = $DIV$ ]
+	add = 1
+
+}

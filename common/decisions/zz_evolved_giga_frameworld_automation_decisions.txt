@@ -1,0 +1,55 @@
+decision_tec_frameworld_automation_on = {
+
+	enactment_time = 30
+
+	resources = {
+		category = decisions
+	}
+	
+	potential = {
+		has_planet_flag = tec_automation_mechanic_off
+		exists = owner
+		owner = {
+			has_origin = origin_frameworld
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_tec_automation_on_effects
+		hidden_effect = {
+			remove_planet_flag = tec_automation_mechanic_off
+		}
+	}
+
+	ai_weight = {
+		weight = 10000
+	}
+}
+
+decision_tec_frameworld_automation_off = {
+
+	enactment_time = 30
+
+	resources = {
+		category = decisions
+	}
+	
+	potential = {
+		exists = owner
+		owner = {
+			is_ai = no
+			tec_is_automated_empire = yes
+			has_origin = origin_frameworld
+		}
+		NOT = {
+			has_planet_flag = tec_automation_mechanic_off
+		}
+	}
+
+	effect = {
+		custom_tooltip = decision_tec_automation_off_effects
+		hidden_effect = {
+			set_planet_flag = tec_automation_mechanic_off
+		}
+	}
+}
